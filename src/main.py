@@ -83,6 +83,20 @@ tank3Canvas.grid(row=0, column=8)
 
 tank3 = Tank(temp, pump31, pump32, 100)
 
+motor1 = Canvas(system, bg="grey", bd=1, width=70, height=140)
+motor1.create_rectangle(0,0, 150, 150, fill="grey")
+motor1.create_text(35, 70, text="M1", font=("Arial", 15), fill="black")
+motor1.grid(row=2, column=0)
+
+motor2 = Canvas(system, bg="grey", bd=1, width=70, height=140)
+motor2.create_rectangle(0,0, 150, 150, fill="grey")
+motor2.create_text(35, 70, text="M2", font=("Arial", 15), fill="black")
+motor2.grid(row=2, column=4)
+
+motor3 = Canvas(system, bg="grey", bd=1, width=70, height=140)
+motor3.create_rectangle(0,0, 150, 150, fill="grey")
+motor3.create_text(35, 70, text="M3", font=("Arial", 15), fill="black")
+motor3.grid(row=2, column=8)
 
 # Button
 
