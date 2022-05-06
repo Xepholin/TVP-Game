@@ -10,15 +10,17 @@ game = Tk()
 # Custom window
 
 game.title("TVP Game")
-game.geometry("1280x100")
-game.minsize(1280, 1000)
+game.geometry("1600x1000")
+game.minsize(1600, 1000)
 
 # Frame
 
-system = Frame(game)
-button = Frame(game, bg="black")
-subButton = Frame(button, bg="black")
-subSubButton = Frame(button, bg="black")
+main = Frame(game)
+system = Frame(main)
+brokenButton = Frame(main)
+stateButton = Frame(game, bg="black")
+subButton = Frame(stateButton, bg="black")
+subSubButton = Frame(stateButton, bg="black")
 
 # Canvas
 
@@ -235,52 +237,76 @@ motor3.create_rectangle(0,0, 150, 150, fill="grey")
 motor3.create_text(35, 70, text="M3", font=("Arial", 15), fill="black")
 motor3.grid(row=3, column=9)
 
-# Button
+# System Button
+
+brokenPump11Button = Button(brokenButton, text="Broken p11", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_first_pump(tank1Canvas, pump11))
+brokenPump11Button.grid(row=2, column=0)
+brokenPump12Button = Button(brokenButton, text="Broken p12", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(tank1Canvas, pump12))
+brokenPump12Button.grid(row=3, column=0)
+brokenPump21Button = Button(brokenButton, text="Broken p21", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_first_pump(tank2Canvas,pump21))
+brokenPump21Button.grid(row=2, column=1)
+brokenPump22Button = Button(brokenButton, text="Broken p22", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(tank2Canvas, pump22))
+brokenPump22Button.grid(row=3, column=1)
+brokenPump31Button = Button(brokenButton, text="Broken p31", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_first_pump(tank3Canvas, pump31))
+brokenPump31Button.grid(row=2, column=2)
+brokenPump32Button = Button(brokenButton, text="Broken p32", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(tank3Canvas, pump32))
+brokenPump32Button.grid(row=3, column=2)
+
+emptyTank1Button = Button(brokenButton, text="Empty Tank1", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: empty_tank(tank1Canvas, tank1))
+emptyTank1Button.grid(row=1, column=0)
+emptyTank2Button = Button(brokenButton, text="Empty Tank2", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: empty_tank(tank2Canvas, tank2))
+emptyTank2Button.grid(row=1, column=1)
+emptyTank3Button = Button(brokenButton, text="Empty Tank3", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: empty_tank(tank3Canvas, tank3))
+emptyTank3Button.grid(row=1, column=2)
+
+# State Button
 
 valveT12ButtonBorder = Frame(subButton, highlightbackground="white", highlightthickness=2, bd=0)
-valveT12Button = Button(valveT12ButtonBorder, text="VT12", font=("Arial, 25"), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valveT12Canvas, valveT12))
+valveT12Button = Button(valveT12ButtonBorder, text="VT12", font=("Arial", 25), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valveT12Canvas, valveT12))
 valveT12ButtonBorder.grid(row=0, column=1, padx=30, pady=10)
 valveT12Button.pack()
 
 valveT23ButtonBorder = Frame(subButton, highlightbackground="white", highlightthickness=2, bd=0)
-valveT23Button = Button(valveT23ButtonBorder, text="VT23", font=("Arial, 25"), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valveT23Canvas, valveT23))
+valveT23Button = Button(valveT23ButtonBorder, text="VT23", font=("Arial", 25), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valveT23Canvas, valveT23))
 valveT23ButtonBorder.grid(row=0, column=2, padx=30,pady=10)
 valveT23Button.pack()
 
 pump12ButtonBorder = Frame(subSubButton, highlightbackground="white", highlightthickness=2, bd=0)
-pump12Button = Button(pump12ButtonBorder, text="P12", font=("Arial, 25"), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_pump(tank1Canvas, tank1))
+pump12Button = Button(pump12ButtonBorder, text="P12", font=("Arial", 25), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_pump(tank1Canvas, tank1))
 pump12ButtonBorder.grid(row=0, column=1, padx=30,pady=10)
 pump12Button.pack()
 
 pump22ButtonBorder = Frame(subSubButton, highlightbackground="white", highlightthickness=2, bd=0)
-pump22Button = Button(pump22ButtonBorder, text="P22", font=("Arial, 25"), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_pump(tank2Canvas, tank2))
+pump22Button = Button(pump22ButtonBorder, text="P22", font=("Arial", 25), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_pump(tank2Canvas, tank2))
 pump22ButtonBorder.grid(row=0, column=2, padx=30,pady=10)
 pump22Button.pack()
 
 pump32ButtonBorder = Frame(subSubButton, highlightbackground="white", highlightthickness=2, bd=0)
-pump32Button = Button(pump32ButtonBorder, text="P32", font=("Arial, 25"), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_pump(tank3Canvas, tank3))
+pump32Button = Button(pump32ButtonBorder, text="P32", font=("Arial", 25), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_pump(tank3Canvas, tank3))
 pump32ButtonBorder.grid(row=0, column=3, padx=30,pady=10)
 pump32Button.pack()
 
 valve12ButtonBorder = Frame(subSubButton, highlightbackground="white", highlightthickness=2, bd=0)
-valve12Button = Button(valve12ButtonBorder, text="V12", font=("Arial, 25"), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valve12Canvas, valve12))
+valve12Button = Button(valve12ButtonBorder, text="V12", font=("Arial", 25), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valve12Canvas, valve12))
 valve12ButtonBorder.grid(row=1, column=1, padx=30,pady=10)
 valve12Button.pack()
 
 valve13ButtonBorder = Frame(subSubButton, highlightbackground="white", highlightthickness=2, bd=0)
-valve13Button = Button(valve13ButtonBorder, text="V13", font=("Arial, 25"), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valve13Canvas, valve13))
+valve13Button = Button(valve13ButtonBorder, text="V13", font=("Arial", 25), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valve13Canvas, valve13))
 valve13ButtonBorder.grid(row=1, column=2, padx=30,pady=10)
 valve13Button.pack()
 
 valve23ButtonBorder = Frame(subSubButton, highlightbackground="white", highlightthickness=2, bd=0)
-valve23Button = Button(valve23ButtonBorder, text="V23", font=("Arial, 25"), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valve23Canvas, valve23))
+valve23Button = Button(valve23ButtonBorder, text="V23", font=("Arial", 25), width=5, height=1, bg="black", bd=1, fg="white", command= lambda: interact_valve(valve23Canvas, valve23))
 valve23ButtonBorder.grid(row=1, column=3, padx=30,pady=10)
 valve23Button.pack()
 
 # Display Frame
 
-system.pack()
-button.pack(side=BOTTOM, fill=BOTH)
+main.pack()
+system.pack(side=LEFT)
+brokenButton.pack(side=LEFT)
+stateButton.pack(side=BOTTOM, fill=BOTH)
 subButton.pack()
 subSubButton.pack()
 
