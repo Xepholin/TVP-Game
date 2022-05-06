@@ -33,7 +33,7 @@ class Pump(object):
 class Tank(object):
     """A simple tank that stores fuel"""
 
-    def __init__(self, id, first_pump, second_pump, quantity, state = 1) -> None:
+    def __init__(self, id, first_pump, second_pump, quantityMax, state = 1) -> None:
         '''
         Create a Tank object
 
@@ -46,10 +46,12 @@ class Tank(object):
         '''
 
         if (state in [0, 1]):
-            if (quantity > 0):
+            if (quantityMax > 0):
                 if (isinstance(first_pump, Pump) and isinstance(second_pump, Pump)):
                     self.id = id
                     self.state = state
+                    self.quantityMax = quantityMax
+                    self.quantity = quantityMax
                     self.first_pump = first_pump
                     self.second_pump = second_pump
                 else:
