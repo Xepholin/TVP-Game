@@ -61,7 +61,10 @@ def interact_valve(canvas, simulation, valveName):
 	if (valve.get_state() == 0):
 		if (valveName != "T12" and valveName != "T23"):
 			if (simulation.tank1.state == 0 or simulation.tank2.state == 0 or simulation.tank3.state == 0):
-				messagebox.showwarning("Warning", "A tank is empty: priority to closing a valve to rebalance the fuel level in the tanks")
+				if (simulation.tank1.first_pump.get_state() == 1 and simulation.tank1.second_pump.get_state() == 1):
+					if (simulation.tank2.first_pump.get_state() == 1 and simulation.tank2.second_pump.get_state() == 1):
+						if (simulation.tank3.first_pump.get_state() == 1 and simulation.tank3.second_pump.get_state() == 1):
+							messagebox.showwarning("Warning", "A tank is empty: priority to closing a valve to rebalance the fuel level in the tanks")
 		else:
 			if (valveName == "T12"):
 				average = int((simulation.tank1.quantity + simulation.tank2.quantity) / 2)
@@ -74,7 +77,10 @@ def interact_valve(canvas, simulation, valveName):
 	else:
 		if (simulation.tank1.state == 0 or simulation.tank2.state == 0 or simulation.tank3.state == 0):
 			if (valveName != "T12" and valveName != "T23"):
-				messagebox.showwarning("Warning", "A tank is empty: priority to closing a valve to rebalance the fuel level in the tanks")
+				if (simulation.tank1.first_pump.get_state() == 1 and simulation.tank1.second_pump.get_state() == 1):
+					if (simulation.tank2.first_pump.get_state() == 1 and simulation.tank2.second_pump.get_state() == 1):
+						if (simulation.tank3.first_pump.get_state() == 1 and simulation.tank3.second_pump.get_state() == 1):
+							messagebox.showwarning("Warning", "A tank is empty: priority to closing a valve to rebalance the fuel level in the tanks")
 		close_valve(valve)
 		draw_valve_vertical(canvas, valve.id)
 
