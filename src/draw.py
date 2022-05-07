@@ -67,14 +67,26 @@ def draw_broken_second_pump(canvas):
     canvas.create_line(80, 90, 120, 130, width=5)
     canvas.create_line(120, 90, 80, 130, width=5)
 
-def draw_empty_tank(canvas, tank):
-    '''
+def draw_empty_tank(tank):
+	'''
 	Draw a empty tank by changing the background color to red
+
+			Parameters:
+				tank (Tank) : A Tank object
+	'''
+
+	tank.canvas.itemconfig(tank.id, fill="red")
+	tank.canvas.itemconfig("text", text="{}".format(tank.quantity))
+
+def draw_not_empty_tank(canvas, tank, color):
+    '''
+	Draw a not empty tank by changing the background color to the tank color
 
 			Parameters:
                 canvas (Canvas) : A Canvas object, canvas possessing the tank
                 tank (Tank) : A Tank object
+				color (str) : A String
 	'''
 
-    canvas.itemconfig(tank, fill="red")
+    canvas.itemconfig(tank, fill=color)
 
