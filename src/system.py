@@ -11,6 +11,7 @@ class Pump(object):
                         id (int) : A Integer
                         state (int) : A Integer, value = -1, 0 or 1 -> -1 = broken / 0 = stopped / 1 = worked
         '''
+
         if (state in [-1, 0, 1]):
             self.id = id
             self.state = state
@@ -47,6 +48,7 @@ class Tank(object):
                         quantity (int) : A Integer, represents quantity of fuel in the tank
                         state (int) : A Integer, value = 0 or 1 -> 0 = empty / 1 = full
         '''
+
         if (isinstance(canvas, Canvas)):
             if (state in [0, 1]):
                 if (quantityMax > 0):
@@ -168,6 +170,7 @@ class Motor(object):
                         canvas (Canvas) : A Canvas object
                         powered (list) : A list of tanks name that powered the motor
         '''
+        
         if (isinstance(canvas, Canvas)):
             self.id = id
             self.canvas= canvas
@@ -212,24 +215,114 @@ class Motor(object):
 class Player(object):
     """A player that controls pumps, tanks, valves"""
 
-    def __init__(self, username, password, score = 0) -> None:
+    def __init__(self, username, password, max_score = 0, scoreCanvas = None) -> None:
         '''
         Create a Player object
                 Parameters:
                         username (str) : A string to name the player
                         password (str) : A string, required to find the player, double check
-                        score (int) : A inetger
+                        max_score (int) : A Integer
+                        scoreCanvas (Canvas) : A Canvas object
         '''
 
         if (isinstance(username, str)):
             if (isinstance(password, str)):
                 self.user = username
                 self.pwd = password
-                self.score = score
+                self.max_score = max_score
+                self.score = 0
+                self.scoreCanvas = scoreCanvas
+                self.action = 0
+                self.good = 0
             else:
                 raise TypeError("password is not a string, got {}".format(type(password)))
         else:
             raise TypeError("username is not a string, got {}".format(type(username)))
+
+    def get_username(self):
+        return self.user
+
+    def get_password(self):
+        return self.pwd
+
+    def get_max_score(self):
+        return self.max_score
+
+    def get_score(self):
+        return self.score
+
+    def get_scoreCanvas(self):
+        return self.scoreCanvas
+
+    def get_action(self):
+        return self.action
+
+    def get_good(self):
+        return self.good
+
+    def set_username(self, new_username):
+        self.user = new_username
+
+    def set_password(self, new_password):
+        self.pwd = new_password
+
+    def set_max_score(self, new_score):
+        self.max_score = new_score
+
+    def set_score(self, new_score):
+        self.score = new_score
+
+    def set_scoreCanvas(self, new_scoreCanvas):
+        if (isinstance(new_scoreCanvas, Canvas)):
+            self.scoreCanvas = new_scoreCanvas
+        else:
+            raise TypeError("New score canvas should be Canvas, got {}".format(type(new_scoreCanvas)))
+
+    def set_action(self, new_action):
+        self.action = new_action
+
+    def set_good(self, new_good):
+        self.good = new_good
+
+    def add_points(self, points):
+        '''
+        Add points to the player's score
+
+                Parameters:
+                        points (int): A Integer
+        '''
+
+        self.score += points
+
+    def take_points(self, points):
+        '''
+        Take points to the player's score
+
+                Parameters:
+                        points (int): A Integer
+        '''
+
+        self.score -= points
+
+    def add_action(self, nb):
+        '''
+        Add a number to the player's action
+
+                Parameters:
+                        nb (int): A Integer
+        '''
+
+        self.action += nb
+
+    def add_good(self, nb):
+        '''
+        Add a number to the player's good action
+
+                Parameters:
+                        nb (int): A Integer
+        '''
+
+        self.good += nb
 
 class Simulation(object):
     '''An aircraft fuel system operating simulator'''

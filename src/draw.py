@@ -1,6 +1,5 @@
 from system import *
 
-
 def draw_valve_horizon(canvas, valve):
     '''
 	Draw an open valve by drawing a horizontal line
@@ -112,4 +111,12 @@ def write_motor_tanks(canvas, tank_list):
 	else:
 		raise TypeError("Tank list should be list, got {}".format(type(tank_list)))
 
+def write_player_score(player):
+	'''
+	Write the new player's score
 
+			Parameters:
+                player (Player) : A Player object
+	'''
+
+	player.scoreCanvas.itemconfig("text", text="Previous Score : {}\nScore : {}".format(player.max_score, player.score))
