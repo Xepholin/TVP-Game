@@ -208,12 +208,12 @@ def interact_pump(canvas, simulation, tankNum):
 	if (tank.second_pump.get_state() == 0):
 		if (simulation.tank1.state == 0 or simulation.tank2.state == 0 or simulation.tank3.state == 0):
 			messagebox.showwarning("Warning", "A tank is empty: priority to closing a valve to rebalance the fuel level in the tanks")
-		open_valve(tank.second_pump)
+		start_pump(tank.second_pump)
 		draw_pump_start(canvas, tank.second_pump.id)
 	elif (tank.second_pump.get_state() == 1):
 		if (simulation.tank1.state == 0 or simulation.tank2.state == 0 or simulation.tank3.state == 0):
 			messagebox.showwarning("Warning", "A tank is empty: priority to closing a valve to rebalance the fuel level in the tanks")
-		close_valve(tank.second_pump)
+		stop_pump(tank.second_pump)
 		draw_pump_stop(canvas, tank.second_pump.id)
 	else:
 		messagebox.showwarning("Warning", "The pump is broken !")
@@ -222,13 +222,22 @@ def interact_pump(canvas, simulation, tankNum):
 		messagebox.showwarning("Warning", "The two tank pumps are broken, turn on a standby pump from another tank and open a valve to powered all motors")
 		if simulation.tank1.secund_pump.get_state() == 0:
 			start_pump(simulation.tank1.second_pump)
-			open_valve(simulation.tank1.second_pump)
+			if tankNum == 2:
+				open_valve(simulation,"V12")
+			if tankNum == 3:
+				open_valve(simulation,"V13")
 		elif simulation.tank2.secund_pump.get_state() == 0:
 			start_pump(simulation.tank2.second_pump)
-			open_valve(simulation.tank2.second_pump)
+			if tankNum == 1:
+				open_valve(simulation,"V12")
+			if tankNum == 3:
+				open_valve(simulation,"V23")
 		elif simulation.tank3.secund_pump.get_state() == 0:
 			start_pump(simulation.tank3.second_pump)
-			open_valve(simulation.tank3.second_pump)
+			if tankNum == 1:
+				open_valve(simulation,"V13")
+			if tankNum == 2:
+				open_valve(simulation,"V23")
 
 
 def broke_first_pump(tank):
