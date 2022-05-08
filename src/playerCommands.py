@@ -225,29 +225,8 @@ def interact_pump(canvas, simulation, tankNum):
 	else:
 		messagebox.showwarning("Warning", "The pump is broken !")
 
-	if (tank.second_pump.get_state() == -1) and (tank.first_pump.get_state() == -1):
-		messagebox.showwarning("Warning", "The two tank pumps are broken, turn on a standby pump from another tank and open a valve to powered all motors")
-		if simulation.tank1.secund_pump.get_state() == 0:
-			start_pump(simulation.tank1.second_pump)
-			if tankNum == 2:
-				open_valve(simulation,"V12")
-			if tankNum == 3:
-				open_valve(simulation,"V13")
-		elif simulation.tank2.secund_pump.get_state() == 0:
-			start_pump(simulation.tank2.second_pump)
-			if tankNum == 1:
-				open_valve(simulation,"V12")
-			if tankNum == 3:
-				open_valve(simulation,"V23")
-		elif simulation.tank3.secund_pump.get_state() == 0:
-			start_pump(simulation.tank3.second_pump)
-			if tankNum == 1:
-				open_valve(simulation,"V13")
-			if tankNum == 2:
-				open_valve(simulation,"V23")
 
-
-def broke_first_pump(tank):
+def broke_first_pump(simulation, tank):
 	'''
 	Puts the first pump in broken state
 
@@ -258,8 +237,9 @@ def broke_first_pump(tank):
 	
 	tank.first_pump.set_state(-1)
 	draw_broken_first_pump(tank.canvas)
+	two_pump_broken(simulation, tank)
 
-def broke_second_pump(tank):
+def broke_second_pump(simulation, tank):
 	'''
 	Puts the second pump in broken state
 
@@ -269,6 +249,7 @@ def broke_second_pump(tank):
 
 	tank.second_pump.set_state(-1)
 	draw_broken_second_pump(tank.canvas)
+	two_pump_broken(simulation, tank)
 
 
 def empty_tank(simulation, tankNum):
@@ -348,3 +329,26 @@ def not_empty_tank(simulation, valveName, new_quantity):
 
 		simulation.tank2.canvas.itemconfig("text", text="{}".format(simulation.tank2.quantity))
 		simulation.tank3.canvas.itemconfig("text", text="{}".format(simulation.tank3.quantity))
+
+def two_pump_broken(simulation, tank):
+
+	if (tank.second_pump.get_state() == -1) and (tank.first_pump.get_state() == -1):
+		messagebox.showwarning("Warning", "The two tank pumps are broken, turn on a standby pump from another tank and open a valve to powered all motors")
+		if simulation.tank1.secund_pump.get_state() == 0:
+			start_pump(simulation.tank1.second_pump)
+			if tank == "tank2":
+				open_valve(simulation,"V12")
+			if tank == "tank3":
+				open_valve(simulation,"V13")
+		elif simulation.tank2.secund_pump.get_state() == 0:
+			start_pump(simulation.tank2.second_pump)
+			if tank == "tank1":
+				open_valve(simulation,"V12")
+			if tank == "tank3":
+				open_valve(simulation,"V23")
+		elif simulation.tank3.secund_pump.get_state() == 0:
+			start_pump(simulation.tank3.second_pump)
+			if tank == "tank1":
+				open_valve(simulation,"V13")
+			if tank =="tank2":
+				open_valve(simulation,"V23")

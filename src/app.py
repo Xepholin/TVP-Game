@@ -256,17 +256,17 @@ simulation = Simulation(player, tank1, tank2, tank3, valveT12, valveT23, valve13
 
 # System Button
 
-brokenPump11Button = Button(brokenButton, text="Broken p11", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_first_pump(tank1))
+brokenPump11Button = Button(brokenButton, text="Broken p11", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: (tank1))
 brokenPump11Button.grid(row=2, column=0)
-brokenPump12Button = Button(brokenButton, text="Broken p12", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(tank1))
+brokenPump12Button = Button(brokenButton, text="Broken p12", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(simulation, tank1))
 brokenPump12Button.grid(row=3, column=0)
-brokenPump21Button = Button(brokenButton, text="Broken p21", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_first_pump(tank2))
+brokenPump21Button = Button(brokenButton, text="Broken p21", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_first_pump(simulation, tank2))
 brokenPump21Button.grid(row=2, column=1)
-brokenPump22Button = Button(brokenButton, text="Broken p22", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(tank2))
+brokenPump22Button = Button(brokenButton, text="Broken p22", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(simulation, tank2))
 brokenPump22Button.grid(row=3, column=1)
-brokenPump31Button = Button(brokenButton, text="Broken p31", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_first_pump(tank3))
+brokenPump31Button = Button(brokenButton, text="Broken p31", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_first_pump(simulation, tank3))
 brokenPump31Button.grid(row=2, column=2)
-brokenPump32Button = Button(brokenButton, text="Broken p32", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(tank3))
+brokenPump32Button = Button(brokenButton, text="Broken p32", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: broke_second_pump(simulation, tank3))
 brokenPump32Button.grid(row=3, column=2)
 
 emptyTank1Button = Button(brokenButton, text="Empty Tank1", font=("Arial", 15), width=12, height=1, bg="black", bd=1, fg="white", command= lambda: empty_tank(simulation, "1"))
