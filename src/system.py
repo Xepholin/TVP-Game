@@ -156,6 +156,59 @@ class Valve(object):
         else:
             raise ValueError("Value of new state should be 0 or 1, got {}".format(new_state))
 
+class Motor(object):
+    """A simple motor powered by a tank"""
+
+    def __init__(self, id, canvas, powered) -> None:
+        '''
+        Create a Tank object
+
+                Parameters:
+                        id (int) : A Integer
+                        canvas (Canvas) : A Canvas object
+                        powered (list) : A list of tanks name that powered the motor
+        '''
+        if (isinstance(canvas, Canvas)):
+            self.id = id
+            self.canvas= canvas
+            self.powered = powered
+        else:
+            raise TypeError("Canvas should be Canvas, got {}".format(type(canvas)))
+
+    def get_canvas(self):
+        return self.canvas
+    
+    def get_powered(self):
+        return self.powered
+
+    def set_canvas(self, new_canvas):
+        self.canvas = new_canvas
+
+    def set_powered(self, new_powered):
+        self.powered = new_powered
+
+    def add_tank(self, tankName):
+        '''
+        Add a new tank in powered list if it's not in
+
+                Parameters:
+                        tankName (str): A String
+        '''
+
+        if (tankName not in self.powered):
+            self.powered.append(tankName)
+
+    def remove_tank(self, tankName):
+        '''
+        Remove a tank in powered list if it's in
+
+                Parameters:
+                        tankName (str): A String
+        '''
+
+        if (tankName in self.powered):
+            self.powered.remove(tankName)
+
 class Player(object):
     """A player that controls pumps, tanks, valves"""
 
@@ -181,7 +234,7 @@ class Player(object):
 class Simulation(object):
     '''An aircraft fuel system operating simulator'''
 
-    def __init__(self, player, tank1, tank2, tank3, valveT12, valveT23, valve13, valve12, valve23) -> None:
+    def __init__(self, player, tank1, tank2, tank3, valveT12, valveT23, valve13, valve12, valve23, motor1, motor2, motor3) -> None:
         '''
         Create a Simulation object
 
@@ -195,23 +248,32 @@ class Simulation(object):
                         valve13 (Valve) : A Valve object
                         valve12 (Valve) : A Valve object
                         valve23 (Valve) : A Valve object
+                        motor1 (Motor) : A Motor object
+                        motor2 (Motor) : A Motor object
+                        motor3 (Motor) : A Motor object
         '''
 
         if (isinstance(player, Player)):
             if (isinstance(tank1, Tank) and isinstance(tank2, Tank) and isinstance(tank3, Tank)):
                 if (isinstance(valveT12, Valve) and isinstance(valveT23, Valve) and isinstance(valve13, Valve) and isinstance(valve12, Valve) and isinstance(valve23, Valve)):
-                    self.player = player
-                    self.tank1 = tank1
-                    self.tank2 = tank2
-                    self.tank3 = tank3
-                    self.valveT12 = valveT12
-                    self.valveT23 = valveT23
-                    self.valve13 = valve13
-                    self.valve12 = valve12
-                    self.valve23 = valve23
+                    if (isinstance(motor1, Motor) and isinstance(motor2, Motor) and isinstance(motor3, Motor)):
+                        self.player = player
+                        self.tank1 = tank1
+                        self.tank2 = tank2
+                        self.tank3 = tank3
+                        self.valveT12 = valveT12
+                        self.valveT23 = valveT23
+                        self.valve13 = valve13
+                        self.valve12 = valve12
+                        self.valve23 = valve23
+                        self.motor1 = motor1
+                        self.motor2 = motor2
+                        self.motor3 = motor3
+                    else:
+                        raise TypeError("Motors should be a Motor, got {}, {} and {}".format(type(motor1), type(motor2), type(motor3)))
                 else:
                     raise TypeError("Valves should be a Valve, got {}, {}, {}, {} and {}".format(type(valveT12), type(valveT23), type(valve13), type(valve12), type(valve23)))
             else:
-                raise TypeError("Tanks should be a Tank, got {}, {} and {}".format(type(tank1), type(tank2), type(tank3)) )
+                raise TypeError("Tanks should be a Tank, got {}, {} and {}".format(type(tank1), type(tank2), type(tank3)))
         else:
             raise TypeError("Player should be a Player, got {}".format(type(player)))

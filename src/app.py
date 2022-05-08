@@ -225,25 +225,34 @@ pipe.grid(row=2, column=0)
 
 # Motors
 
-motor1 = Canvas(system, bg="grey", bd=1, width=70, height=140)
-motor1.create_rectangle(0,0, 150, 150, fill="grey")
-motor1.create_text(35, 70, text="M1", font=("Arial", 15), fill="black")
-motor1.grid(row=3, column=1)
+motor1Canvas = Canvas(system, bd=1, width=140, height=140)
+temp = motor1Canvas.create_rectangle(30,0, 110, 140, fill="grey")
+motor1Canvas.create_text(70, 70, text="M1", font=("Arial", 15), fill="black")
+motor1Canvas.create_text(125, 40, text="T1", font=("Arial", 10), tags="text")
+motor1Canvas.grid(row=3, column=1)
 
-motor2 = Canvas(system, bg="grey", bd=1, width=70, height=140)
-motor2.create_rectangle(0,0, 150, 150, fill="grey")
-motor2.create_text(35, 70, text="M2", font=("Arial", 15), fill="black")
-motor2.grid(row=3, column=5)
+motor1 = Motor(temp, motor1Canvas, ["T1"])
 
-motor3 = Canvas(system, bg="grey", bd=1, width=70, height=140)
-motor3.create_rectangle(0,0, 150, 150, fill="grey")
-motor3.create_text(35, 70, text="M3", font=("Arial", 15), fill="black")
-motor3.grid(row=3, column=9)
+motor2Canvas = Canvas(system, bd=1, width=140, height=140)
+temp = motor2Canvas.create_rectangle(30,0, 110, 140, fill="grey")
+motor2Canvas.create_text(70, 70, text="M2", font=("Arial", 15), fill="black")
+motor2Canvas.create_text(125, 40, text="T2", font=("Arial", 10), tags="text")
+motor2Canvas.grid(row=3, column=5)
+
+motor2 = Motor(temp, motor2Canvas, ["T2"])
+
+motor3Canvas = Canvas(system, bd=1, width=140, height=140)
+temp = motor3Canvas.create_rectangle(30,0, 110, 140, fill="grey")
+motor3Canvas.create_text(70, 70, text="M3", font=("Arial", 15), fill="black")
+motor3Canvas.create_text(125, 40, text="T3", font=("Arial", 10), tags="text")
+motor3Canvas.grid(row=3, column=9)
+
+motor3 = Motor(temp, motor3Canvas, ["T3"])
 
 # Simulator 
 
 player = Player("non", "non")
-simulation = Simulation(player, tank1, tank2, tank3, valveT12, valveT23, valve13, valve12, valve23)
+simulation = Simulation(player, tank1, tank2, tank3, valveT12, valveT23, valve13, valve12, valve23, motor1, motor2, motor3)
 
 # System Button
 

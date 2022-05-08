@@ -1,4 +1,4 @@
-from turtle import width
+from system import *
 
 
 def draw_valve_horizon(canvas, valve):
@@ -88,5 +88,28 @@ def draw_not_empty_tank(canvas, tank, color):
 				color (str) : A String
 	'''
 
-    canvas.itemconfig(tank, fill=color)
+    canvas.itemconfig(tank.id, fill=color)
+
+def write_motor_tanks(canvas, tank_list):
+	'''
+	Write the new tanks that powered the motor
+
+			Parameters:
+                canvas (Canvas) : A Canvas object, canvas possessing the tank
+                tank_list (list) : A list
+	'''
+
+	if (isinstance(tank_list, list)):
+		temp = ""
+
+		for tank in tank_list:
+			temp += tank + '\n'
+
+		if (isinstance(canvas, Canvas)):
+			canvas.itemconfig("text", text=temp)
+		else:
+			raise TypeError("Canvas should be Canvas, got {}".format(type(canvas)))
+	else:
+		raise TypeError("Tank list should be list, got {}".format(type(tank_list)))
+
 
