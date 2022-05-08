@@ -153,24 +153,31 @@ def interact_valve(canvas, simulation, valveName):
 		draw_valve_vertical(canvas, valve.id)
 
 def start_pump(pump):
-    '''
-    Puts the pump in worked state
+	'''
+	Puts the pump in worked state
 
-            Parameters:
-                    pump (Pump) : A Pump object
-    '''
+			Parameters:
+					pump (Pump) : A Pump object
+	'''
+	
+	if (isinstance(pump, Pump)):
+		pump.set_state(1)
+	else:
+		raise TypeError("Pump should be Pump, got {}".format(type(pump)))
 
-    pump.set_state(1)
 
 def stop_pump(pump):
-    '''
-    Puts the pump in stopped state
+	'''
+	Puts the pump in stopped state
 
-            Parameters:
+			Parameters:
 					pump (Pump) : A Pump object
-    '''
-
-    pump.set_state(0)
+	'''
+	
+	if (isinstance(pump, Pump)):
+		pump.set_state(0)
+	else:
+		raise TypeError("Pump should be Pump, got {}".format(type(pump)))
 
 def find_tank(simulation, tankNum):
 	'''
