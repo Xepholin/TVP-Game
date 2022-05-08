@@ -150,6 +150,20 @@ def interact_pump(canvas, simulation, tankNum):
 	else:
 		messagebox.showwarning("Warning", "The pump is broken !")
 
+	if (tank.second_pump.get_state() == -1) and (tank.first_pump.get_state() == -1):
+		messagebox.showwarning("Warning", "The two tank pumps are broken, turn on a standby pump from another tank and open a valve to powered all motors")
+		if simulation.tank1.secund_pump.get_state() == 0:
+			start_pump(simulation.tank1.second_pump)
+			open_valve(simulation.tank1.second_pump)
+		elif simulation.tank2.secund_pump.get_state() == 0:
+			start_pump(simulation.tank2.second_pump)
+			open_valve(simulation.tank2.second_pump)
+		elif simulation.tank3.secund_pump.get_state() == 0:
+			start_pump(simulation.tank3.second_pump)
+			open_valve(simulation.tank3.second_pump)
+
+
+
 
 def broke_first_pump(tank):
 	'''
