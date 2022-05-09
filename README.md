@@ -16,7 +16,7 @@ Dans le fichier : login.py
 Ce fichier possède un total de 2 méthodes, l’utilité de ce fichier est de créer une interface de connexion pour l’utilisateur.
 Ce fichier est en lien avec le fichier “logs” qui regroupe tous les utilisateurs qui ont déjà été enregistré, les informations inscrites sont sous la forme de : 
 
-- Nom d’utilisateur - Mot de passe - Score maximal - série de note des session précédente
+- Nom d’utilisateur - Mot de passe - Score maximal - série de note des sessions précédentes
 
 La méthode switch_game
 
