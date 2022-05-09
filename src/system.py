@@ -32,7 +32,6 @@ class Pump(object):
         else:
             raise ValueError("Value of new state should be -1, 0 or 1, got {}".format(new_state))
 
-
 class Tank(object):
     """A simple tank that stores fuel"""
 
@@ -45,7 +44,7 @@ class Tank(object):
                         id (int) : A Integer
                         first_pump (Pump) : A Pump object
                         second_pump (Pump) : A Pump object
-                        quantity (int) : A Integer, represents quantity of fuel in the tank
+                        quantityMax (int) : A Integer, represents quantity max of fuel for the tank
                         state (int) : A Integer, value = 0 or 1 -> 0 = empty / 1 = full
         '''
 
@@ -123,7 +122,6 @@ class Tank(object):
             self.quantity = new_quantity
         else:
             raise TypeError("Type of new quantity should be a integer, got {}".format(type(new_quantity)))
-
 
 class Valve(object):
     """A simple valve that used to open fuel access"""

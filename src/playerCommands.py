@@ -114,7 +114,7 @@ def update_powered_motor(simulation, valveName, state):
 
 def interact_valve(canvas, simulation, valveName):
 	'''
-	Puts the valve in closed state
+	Puts the valve in closed or open state
 
 		Parameters:
 				canvas (Canvas) : A Canvas object, canvas possessing the valve
@@ -181,7 +181,6 @@ def start_pump(canvas, pump):
 	else:
 		raise TypeError("Pump should be Pump, got {}".format(type(pump)))
 
-
 def stop_pump(canvas, pump):
 	'''
 	Puts the pump in stopped state
@@ -220,7 +219,7 @@ def find_tank(simulation, tankNum):
 
 def interact_pump(canvas, simulation, tankNum):
 	'''
-	Puts the pump in stopped state, if the pump is broken, display a message box
+	Puts the second pump in stopped or worked state, if the pump is broken, display a message box
 
 			Parameters:
 					canvas (Canvas) : A Canvas object, canvas possessing the tank
@@ -249,7 +248,6 @@ def interact_pump(canvas, simulation, tankNum):
 	else:
 		messagebox.showwarning("Warning", "The pump is broken !")
 
-
 def broke_first_pump(simulation, tank):
 	'''
 	Puts the first pump in broken state
@@ -274,7 +272,6 @@ def broke_second_pump(simulation, tank):
 	tank.second_pump.set_state(-1)
 	draw_broken_second_pump(tank.canvas)
 	two_pump_broken(simulation, tank)
-
 
 def empty_tank(simulation, tankNum):
 	'''

@@ -1,4 +1,4 @@
-from game import closing, game_screen
+from game import game_screen
 from tkinter import *
 from system import Player
 
@@ -31,7 +31,7 @@ def switch_game(login, errorTextFrame, username, password):
                     break
                 else:
                     continue
-
+        
             if (boolean):
                 file.write(user_pwd)
 

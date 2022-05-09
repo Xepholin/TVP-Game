@@ -9,8 +9,7 @@ def save(simulation):
 	Save informations from player, save data from old file and create a new file with updated data
 
 			Parameters:
-                game (Tk) : A Tk object
-                player (Player) : A Player object
+                simulation (Simulation) : A Simulation object
 	'''
 
     with open("logs", 'r') as file:
@@ -41,7 +40,6 @@ def save(simulation):
 
     with open("logs", 'w') as file:
         file.write(replacement)
-    
 
 def closing(root, simulation):
     '''
@@ -49,7 +47,7 @@ def closing(root, simulation):
 
 			Parameters:
                 game (Tk) : A Tk object
-                player (Player) : A Player object
+                simulation (Simulation) : A Simulation object
 	'''
 
     if (messagebox.askokcancel("Quit", "Do you want to quit?")):
